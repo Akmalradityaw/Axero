@@ -12,6 +12,14 @@ export function createServer() {
     }
     fn(req, res);
   });
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.error(`\nError: port sudah dipakai proses lain.\nHint: jalankan dengan port lain — PORT=<port> node server.mjs\n`);
+    } else {
+      console.error('\nServer error:', err.message);
+    }
+    process.exit(1);
+  });
   return {
     node: server,
     get: (path, fn) => routes.set(`GET ${path}`, fn),
