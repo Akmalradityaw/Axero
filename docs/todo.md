@@ -68,3 +68,13 @@
 - [x] Lakukan uji coba menyeluruh dari sudut pandang pengguna baru (*clean machine test*) — HTTP 200 + WS broadcast OK.
 - [x] Fix `EADDRINUSE` — error message actionable dengan hint `PORT=<port>` (bukan crash trace).
 - [x] Rapikan catatan rilis awal dan tag commit pertama sebagai `v0.1.0-alpha`.
+
+---
+
+### Sprint 5: File-Based Routing (`@axero/core/router`) — DONE 2026-10-09
+
+- [x] `scanRoutes(dir)` — scan folder `routes/`, filename → path (`index` → `/`, `[id]` → `:id`).
+- [x] `matchPath(pattern, path)` — regex match + extract params ke `req.params`.
+- [x] `app.loadRoutes(dir)` — auto-import + register semua file `.mjs` di folder.
+- [x] Template `minimal` pakai `loadRoutes` untuk semua routes.
+- [x] Test end-to-end: `/`, `/about`, `/item-123` (param), `/app`, 404 — semua OK.
