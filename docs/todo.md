@@ -41,28 +41,30 @@
 
 ---
 
-### Sprint 2: CLI Runner Sederhana (`@axero/cli`)
+### Sprint 2: CLI Runner Sederhana (`@axero/cli`) — DONE 2026-10-08
 
-- [ ] Setup file binary executable di `packages/cli/bin/axero.js` (`#!/usr/bin/env node`).
-- [ ] Integrasikan parser argumen baris perintah (bisa memanfaatkan `node:util parseArgs` atau pustaka minimal seperti `citty`/`commander`).
-- [ ] Buat perintah `axero --version` (membaca versi saat ini dari package.json).
-- [ ] Buat perintah `axero doctor` untuk memverifikasi versi Node.js sistem (wajib >= 20.x).
-- [ ] Buat perintah `axero dev` (menjalankan server development lokal dari folder yang ditunjuk).
-
----
-
-### Sprint 3: Eksperimen Sinyal Sisi Client (`@axero/core/client`)
-
-- [ ] Tulis primitif `createSignal<T>(initialValue)` dengan getter dan setter.
-- [ ] Tulis primitif `createEffect(callback)` yang mendaftarkan subscriber aktif saat getter dipanggil.
-- [ ] Pastikan tidak ada infinite loop saat sinyal dimutasi di dalam efek.
-- [ ] Uji coba manipulasi elemen HTML native langsung di browser tanpa Virtual DOM.
+- [x] Setup file binary executable di `packages/cli/bin/axero.mjs` (`#!/usr/bin/env node`).
+- [x] Integrasikan parser argumen baris perintah (`node:util parseArgs`).
+- [x] Buat perintah `axero --version` (membaca versi saat ini dari package.json).
+- [x] Buat perintah `axero doctor` untuk memverifikasi versi Node.js sistem (wajib >= 20.x).
+- [x] Buat perintah `axero dev` (menjalankan server development lokal dari folder yang ditunjuk).
+- [x] Buat perintah `axero create <app-name>` (copy `templates/minimal` ke folder tujuan).
 
 ---
 
-### Sprint 4: Starter Template & Verifikasi v0.1.0-alpha
+### Sprint 3: Eksperimen Sinyal Sisi Client (`@axero/core/client`) — DONE 2026-10-08
 
-- [ ] Buat folder starter di `templates/minimal/` (berisi server HTTP + script koneksi WS sederhana).
-- [ ] Sempurnakan perintah `axero create <app-name>` agar meng-copy template tersebut ke direktori baru.
-- [ ] Lakukan uji coba menyeluruh dari sudut pandang pengguna baru (*clean machine test*).
-- [ ] Rapikan catatan rilis awal dan tag commit pertama sebagai `v0.1.0-alpha`.
+- [x] Tulis primitif `createSignal<T>(initialValue)` dengan getter dan setter.
+- [x] Tulis primitif `createEffect(callback)` yang mendaftar subscriber aktif saat getter dipanggil.
+- [x] Pastikan tidak ada infinite loop saat sinyal dimutasi di dalam efek.
+- [x] Uji coba manipulasi elemen HTML native langsung di browser tanpa Virtual DOM (via `templates/minimal/client`).
+
+---
+
+### Sprint 4: Starter Template & Verifikasi v0.1.0-alpha — DONE 2026-10-08
+
+- [x] Buat folder starter di `templates/minimal/` (berisi server HTTP + script koneksi WS sederhana).
+- [x] Sempurnakan perintah `axero create <app-name>` agar meng-copy template tersebut ke direktori baru.
+- [x] Lakukan uji coba menyeluruh dari sudut pandang pengguna baru (*clean machine test*) — HTTP 200 + WS broadcast OK.
+- [x] Fix `EADDRINUSE` — error message actionable dengan hint `PORT=<port>` (bukan crash trace).
+- [x] Rapikan catatan rilis awal dan tag commit pertama sebagai `v0.1.0-alpha`.
