@@ -108,3 +108,13 @@
 - [ ] Test end-to-end — butuh Node 22.5+ (skip di Node 20).
 - [ ] MySQL driver — via `mysql2` (dependency eksternal).
 - [ ] Supabase driver — via `@supabase/supabase-js` (dependency eksternal).
+
+---
+
+### Sprint 9: MySQL & Supabase Drivers (`@axero/orm`) — DONE 2026-10-09
+
+- [x] `packages/orm/src/mysql.mjs` — driver MySQL via `mysql2` (query/execute API).
+- [x] `packages/orm/src/supabase.mjs` — driver Supabase via `@supabase/supabase-js` (collection API).
+- [x] `createORM({ driver: 'mysql' | 'supabase' })` — dynamic import, actionable error hint.
+- [x] Error hint terverifikasi: "MySQL driver requires: npm install mysql2".
+- [ ] Test end-to-end — butuh install dependency eksternal.
