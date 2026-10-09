@@ -4,6 +4,8 @@
 
 Zero-dependency fullstack framework — native HTTP + WebSocket (RFC 6455) on one port, fine-grained signals, no Virtual DOM.
 
+**Landing page:** [website/index.html](website/index.html)
+
 ## Install
 
 ```bash
