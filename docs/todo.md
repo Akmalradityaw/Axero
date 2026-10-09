@@ -118,3 +118,13 @@
 - [x] `createORM({ driver: 'mysql' | 'supabase' })` — dynamic import, actionable error hint.
 - [x] Error hint terverifikasi: "MySQL driver requires: npm install mysql2".
 - [ ] Test end-to-end — butuh install dependency eksternal.
+
+---
+
+### Sprint 10: HMR — Hot Module Replacement (`@axero/core/hmr`) — DONE 2026-10-09
+
+- [x] `packages/core/src/hmr.mjs` — `watchFiles(dir, onChange)` via `fs.watch` recursive.
+- [x] Template `server.mjs` — watch `routes/`, broadcast `hmr:reload` via WS.
+- [x] Template `client/app.mjs` — listen `hmr:reload` → `location.reload()`.
+- [x] Test end-to-end: file berubah → WS broadcast `hmr:reload` — OK.
+- [ ] Hot swap tanpa reload — butuh complex diffing, add jika diperlukan.
