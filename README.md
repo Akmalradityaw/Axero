@@ -6,6 +6,10 @@ Zero-dependency fullstack framework — native HTTP + WebSocket (RFC 6455) on on
 
 **Landing page:** [website/index.html](website/index.html)
 
+## HMR
+
+File berubah → WS broadcast `hmr:reload` → client reload. Full page reload, bukan hot swap — cukup untuk PoC.
+
 ## Install
 
 ```bash
