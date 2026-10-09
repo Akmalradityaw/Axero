@@ -86,3 +86,14 @@
 - [x] `website/index.html` — split hero + code example, 4 features, quickstart section.
 - [x] No gradient, no external resources, system font stack.
 - [x] Responsive: mobile collapse, nav hamburger-ready.
+
+---
+
+### Sprint 7: ORM Layer (`@axero/orm`) — DONE 2026-10-09
+
+- [x] `createORM(config)` — factory dengan driver interface.
+- [x] JSON driver — file-based, zero dependency, collection API.
+- [x] Collection methods: `create`, `find`, `findById`, `update`, `delete`.
+- [x] Persistence — data tersimpan ke file JSON, survive restart.
+- [x] Test: 6/6 OK (create, find, findById, update, delete, persist).
+- [ ] SQLite driver — via `node:sqlite` (Node 22+) atau `better-sqlite3`.
