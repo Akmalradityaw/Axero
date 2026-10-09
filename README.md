@@ -22,6 +22,7 @@ npm run dev
 ```bash
 axero --version   # 0.1.0-alpha
 axero --doctor    # check Node >= 20
+axero create <app>  # new app from templates/minimal
 axero dev         # watch mode
 ```
 
