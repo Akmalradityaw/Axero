@@ -78,3 +78,11 @@
 - [x] `app.loadRoutes(dir)` — auto-import + register semua file `.mjs` di folder.
 - [x] Template `minimal` pakai `loadRoutes` untuk semua routes.
 - [x] Test end-to-end: `/`, `/about`, `/item-123` (param), `/app`, 404 — semua OK.
+
+---
+
+### Sprint 6: Landing Page (`website/`) — DONE 2026-10-09
+
+- [x] `website/index.html` — split hero + code example, 4 features, quickstart section.
+- [x] No gradient, no external resources, system font stack.
+- [x] Responsive: mobile collapse, nav hamburger-ready.
