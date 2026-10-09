@@ -48,6 +48,7 @@ Each file exports a default handler: `export default (req, res) => ...`. Params 
 | `@axero/core` | HTTP server + signal/effect primitives |
 | `@axero/ws` | Native WebSocket upgrade, frame codec, broadcast |
 | `@axero/cli` | Terminal commands |
+| `@axero/orm` | Database abstraction — JSON driver, collection API |
 
 ## License
 
