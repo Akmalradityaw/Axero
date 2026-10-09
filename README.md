@@ -26,6 +26,19 @@ axero create <app>  # new app from templates/minimal
 axero dev         # watch mode
 ```
 
+## File-based routing
+
+Routes auto-registered from `routes/` folder:
+
+```text
+routes/
+  index.mjs      → GET /
+  about.mjs      → GET /about
+  item-[id].mjs  → GET /item-:id  (param)
+```
+
+Each file exports a default handler: `export default (req, res) => ...`. Params via `req.params`.
+
 ## Packages
 
 | Package | Purpose |
