@@ -1,8 +1,7 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { dirname } from 'node:path';
 
-// ponytail: JSON driver only, no SQL — add sqlite driver via node:sqlite when needed.
-export async function createORM(config = {}) {
+async function createJSON(config = {}) {
   const url = config.url ?? './data.json';
   const path = url.replace('file://', '');
   let data = {};
@@ -46,4 +45,21 @@ export async function createORM(config = {}) {
     },
     close: async () => {},
   };
+}
+
+async function createSQLite(config = {}) {
+  try {
+    const { connect } = await import('./sqlite.mjs');
+    return connect(config.url);
+  } catch (err) {
+    if (err.code === 'ERR_MODULE_NOT_FOUND') {
+      throw new Error('SQLite driver requires Node 22.5+ (node:sqlite). Use JSON driver or upgrade Node.');
+    }
+    throw err;
+  }
+}
+
+export async function createORM(config = {}) {
+  if (config.driver === 'sqlite') return createSQLite(config);
+  return createJSON(config);
 }
