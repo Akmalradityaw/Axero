@@ -1,0 +1,8 @@
+{
+  "name": "@axero/cli",
+  "version": "0.1.0-alpha",
+  "type": "module",
+  "bin": {
+    "axero": "./bin/axero.mjs"
+  }
+}

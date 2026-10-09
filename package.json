@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "name": "axero",
+  "version": "0.1.0-alpha",
+  "type": "module",
+  "workspaces": ["packages/*", "playground/*"],
+  "scripts": {
+    "test": "node --test spikes/ playground/",
+    "dev": "node playground/basic-test/server.mjs"
+  }
+}
