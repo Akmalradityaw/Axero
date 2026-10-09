@@ -56,6 +56,14 @@ const found = await users.find({ name: 'Akmal' });
 const db = await createORM({ driver: 'sqlite', url: './db.sqlite' });
 await db.execute('CREATE TABLE IF NOT EXISTS users (id TEXT, name TEXT)');
 const rows = await db.query('SELECT * FROM users WHERE name = ?', ['Akmal']);
+
+// MySQL driver — npm install mysql2
+const my = await createORM({ driver: 'mysql', url: 'mysql://user:pass@localhost/db' });
+await my.execute('INSERT INTO users (name) VALUES (?)', ['Akmal']);
+
+// Supabase driver — npm install @supabase/supabase-js
+const sb = await createORM({ driver: 'supabase', url: 'https://xxx.supabase.co', key: 'anon-key' });
+await sb.execute('users', { name: 'Akmal' });
 ```
 
 ## Packages
