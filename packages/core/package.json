@@ -5,6 +5,7 @@
   "main": "./src/index.mjs",
   "exports": {
     ".": "./src/index.mjs",
-    "./signals": "./src/signals.mjs"
+    "./signals": "./src/signals.mjs",
+    "./hmr": "./src/hmr.mjs"
   }
 }

@@ -8,6 +8,7 @@ document.getElementById('btn').onclick = () => setCount(c => c + 1);
 
 const ws = new WebSocket('ws://' + location.host);
 ws.onmessage = (e) => {
+  if (e.data === 'hmr:reload') return location.reload();
   const log = document.getElementById('log');
   log.textContent = e.data + '\n' + log.textContent;
 };
