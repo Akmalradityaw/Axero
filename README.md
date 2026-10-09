@@ -41,6 +41,23 @@ routes/
 
 Each file exports a default handler: `export default (req, res) => ...`. Params via `req.params`.
 
+## ORM
+
+```js
+import { createORM } from '@axero/orm';
+
+// JSON driver (default, zero dependency)
+const orm = await createORM({ url: './data.json' });
+const users = orm.collection('users');
+await users.create({ name: 'Akmal' });
+const found = await users.find({ name: 'Akmal' });
+
+// SQLite driver (Node 22.5+)
+const db = await createORM({ driver: 'sqlite', url: './db.sqlite' });
+await db.execute('CREATE TABLE IF NOT EXISTS users (id TEXT, name TEXT)');
+const rows = await db.query('SELECT * FROM users WHERE name = ?', ['Akmal']);
+```
+
 ## Packages
 
 | Package | Purpose |
