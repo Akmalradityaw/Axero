@@ -97,3 +97,14 @@
 - [x] Persistence — data tersimpan ke file JSON, survive restart.
 - [x] Test: 6/6 OK (create, find, findById, update, delete, persist).
 - [ ] SQLite driver — via `node:sqlite` (Node 22+) atau `better-sqlite3`.
+
+---
+
+### Sprint 8: SQLite Driver (`@axero/orm/sqlite`) — DONE 2026-10-09
+
+- [x] `packages/orm/src/sqlite.mjs` — driver SQLite via `node:sqlite` (Node 22.5+).
+- [x] `createORM({ driver: 'sqlite', url })` — query/execute API.
+- [x] Fallback error dengan hint Node 22.5+ jika `node:sqlite` tidak tersedia.
+- [ ] Test end-to-end — butuh Node 22.5+ (skip di Node 20).
+- [ ] MySQL driver — via `mysql2` (dependency eksternal).
+- [ ] Supabase driver — via `@supabase/supabase-js` (dependency eksternal).
