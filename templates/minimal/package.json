@@ -1,0 +1,9 @@
+{
+  "name": "axero-minimal",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@axero/core": "workspace:*",
+    "@axero/ws": "workspace:*"
+  }
+}
