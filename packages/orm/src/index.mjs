@@ -59,7 +59,33 @@ async function createSQLite(config = {}) {
   }
 }
 
+async function createMySQL(config = {}) {
+  try {
+    const { connect } = await import('./mysql.mjs');
+    return connect(config.url);
+  } catch (err) {
+    if (err.code === 'ERR_MODULE_NOT_FOUND') {
+      throw new Error('MySQL driver requires: npm install mysql2');
+    }
+    throw err;
+  }
+}
+
+async function createSupabase(config = {}) {
+  try {
+    const { connect } = await import('./supabase.mjs');
+    return connect(config.url, config.key);
+  } catch (err) {
+    if (err.code === 'ERR_MODULE_NOT_FOUND') {
+      throw new Error('Supabase driver requires: npm install @supabase/supabase-js');
+    }
+    throw err;
+  }
+}
+
 export async function createORM(config = {}) {
   if (config.driver === 'sqlite') return createSQLite(config);
+  if (config.driver === 'mysql') return createMySQL(config);
+  if (config.driver === 'supabase') return createSupabase(config);
   return createJSON(config);
 }
