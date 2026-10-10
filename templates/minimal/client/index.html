@@ -3,37 +3,43 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Axero — Real-Time Demo</title>
+  <title>Axero — Build real-time apps like breathing</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-zinc-50 text-zinc-900 min-h-screen">
-  <div class="max-w-2xl mx-auto px-4 py-12">
-    <header class="text-center mb-12">
-      <h1 class="text-3xl font-bold tracking-tight">Axero<span class="text-emerald-500">.js</span></h1>
-      <p class="text-zinc-500 mt-2">Real-time demo — signals + WebSocket</p>
-    </header>
+<body class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col">
+  <div class="flex-1 flex flex-col items-center justify-center px-4 py-16">
+    <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-white">Axero<span class="text-emerald-500">.js</span></h1>
+    <p class="text-zinc-400 text-lg md:text-xl mt-6 text-center">Build real-time apps like breathing.</p>
+    <p class="text-zinc-600 text-sm mt-2">Zero dependencies &middot; Real-time first</p>
+  </div>
 
-    <div class="bg-white border border-zinc-200 rounded-xl p-6 mb-6 shadow-sm">
-      <h2 class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-4">Signals</h2>
+  <div class="max-w-2xl mx-auto px-4 pb-12 space-y-6 w-full">
+    <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6">
+      <h2 class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-4">Signals</h2>
       <div class="flex items-center gap-4">
         <button id="btn" class="px-6 py-2 bg-emerald-500 text-white rounded-lg font-medium hover:bg-emerald-600 active:scale-95 transition">klik</button>
         <div id="out" class="text-xl font-semibold tabular-nums"></div>
       </div>
     </div>
 
-    <div class="bg-white border border-zinc-200 rounded-xl p-6 shadow-sm">
-      <h2 class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-4">WebSocket Chat</h2>
-      <pre id="log" class="bg-zinc-900 text-zinc-100 rounded-lg p-4 h-44 overflow-y-auto text-sm mb-4 font-mono leading-relaxed"></pre>
+    <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6">
+      <h2 class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-4">WebSocket Chat</h2>
+      <pre id="log" class="bg-zinc-950 text-zinc-100 rounded-lg p-4 h-44 overflow-y-auto text-sm mb-4 font-mono leading-relaxed"></pre>
       <div class="flex gap-2">
-        <input id="msg" type="text" placeholder="ketik pesan..." class="flex-1 border border-zinc-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
+        <input id="msg" type="text" placeholder="ketik pesan..." class="flex-1 bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
         <button id="send" class="px-4 py-2 bg-emerald-500 text-white rounded-lg text-sm font-medium hover:bg-emerald-600 active:scale-95 transition">kirim</button>
       </div>
     </div>
-
-    <footer class="text-center text-zinc-400 text-sm mt-8">
-      buka 2 tab — chat bekerja real-time
-    </footer>
   </div>
+
+  <footer class="text-center text-zinc-600 text-sm pb-8 space-x-2">
+    <a href="https://github.com/Akmalradityaw/Axero" class="hover:text-zinc-400 transition">GitHub</a>
+    <span>&middot;</span>
+    <a href="https://github.com/Akmalradityaw/Axero" class="hover:text-zinc-400 transition">Docs</a>
+    <span>&middot;</span>
+    <span>v0.1.0-alpha</span>
+  </footer>
+
   <script type="module" src="/app"></script>
 </body>
 </html>

@@ -158,6 +158,15 @@
 
 ---
 
+### Sprint 17: Welcome Page Redesign (Laravel-style) — DONE 2026-10-10
+
+- [x] Dark theme welcome page — logo besar, tagline, footer links.
+- [x] Counter (signals) + chat (WS broadcast) di bawah hero.
+- [x] Tailwind CSS via CDN, no gradient, no external JS framework.
+- [x] Test: 6/6 OK (status, tailwind, welcome, dark theme, counter, chat).
+
+---
+
 ### Sprint 13: API Freeze + Dokumentasi Final — DONE 2026-10-09
 
 - [x] `docs/API.md` — semua API publik di-freeze untuk v0.1.0-alpha.
