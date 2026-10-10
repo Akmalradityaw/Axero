@@ -176,6 +176,16 @@
 
 ---
 
+### Sprint 19: Logo Integration — DONE 2026-10-10
+
+- [x] `brand/` — logo kit lengkap (logo-dark, logo-light, wordmark, favicon, PWA icons, webmanifest).
+- [x] `website/index.html` — logo di navbar + hero.
+- [x] `templates/minimal/client/index.html` — logo di welcome hero.
+- [x] `README.md` — logo di top section.
+- [x] `docs/README.md` + `docs/API.md` — logo di header.
+
+---
+
 ### Sprint 13: API Freeze + Dokumentasi Final — DONE 2026-10-09
 
 - [x] `docs/API.md` — semua API publik di-freeze untuk v0.1.0-alpha.

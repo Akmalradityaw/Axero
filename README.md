@@ -1,5 +1,7 @@
 # AXERO.JS
 
+<img src="brand/logo-dark.svg" alt="Axero" width="64" height="64" align="left">
+
 > *Build real-time apps like breathing.*
 
 Zero-dependency fullstack framework — native HTTP + WebSocket (RFC 6455) on one port, fine-grained signals, no Virtual DOM.

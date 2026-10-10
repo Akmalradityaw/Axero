@@ -1,5 +1,7 @@
 # AXERO.JS API Reference — v0.1.0-alpha (Frozen)
 
+<img src="../brand/logo-dark.svg" alt="Axero" width="48" height="48" align="left">
+
 *Semua API di bawah ini frozen untuk v0.1.0-alpha. Breaking changes hanya di v0.2.0+.*
 
 ---
