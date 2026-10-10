@@ -139,6 +139,16 @@
 
 ---
 
+### Sprint 15: Nested Routes (`@axero/core/router`) — DONE 2026-10-09
+
+- [x] Recursive scan — `readdirSync` dengan `withFileTypes`, walk folder.
+- [x] Path conversion — `index` → `/`, `[id]` → `:id`, nested folder → nested path.
+- [x] Backward compatible — flat routes tetap jalan.
+- [x] Template `minimal` — contoh `routes/users/[id].mjs`.
+- [x] Test end-to-end: `/`, `/users`, `/users/42`, `/about` — 4/4 OK.
+
+---
+
 ### Sprint 13: API Freeze + Dokumentasi Final — DONE 2026-10-09
 
 - [x] `docs/API.md` — semua API publik di-freeze untuk v0.1.0-alpha.
