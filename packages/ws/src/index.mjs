@@ -27,12 +27,19 @@ export function decodeFrame(buf) {
   return { opcode, payload: Buffer.from(payload) };
 }
 
-export function createWS(app) {
+export function createWS(app, config = {}) {
   const clients = new Set();
   const bus = new EventEmitter();
   app.node.on('upgrade', (req, socket) => {
     const key = req.headers['sec-websocket-key'];
     if (!key) return socket.destroy();
+
+    const origin = req.headers.origin;
+    if (config.cors?.origin && origin) {
+      const allowed = Array.isArray(config.cors.origin) ? config.cors.origin : [config.cors.origin];
+      if (!allowed.includes(origin)) return socket.destroy();
+    }
+
     socket.write(
       ['HTTP/1.1 101 Switching Protocols', 'Upgrade: websocket', 'Connection: Upgrade', `Sec-WebSocket-Accept: ${acceptKey(key)}`, '\r\n'].join('\r\n')
     );
@@ -46,7 +53,14 @@ export function createWS(app) {
         if (opcode === 0x9) return socket.write(Buffer.from([0x8a, 0x00])); // pong
         if (opcode !== 0x1) return;
         const text = payload.toString();
-        for (const c of clients) if (c !== socket) c.write(encodeFrame(text));
+        for (const c of clients) {
+          if (c === socket || !c.writable) continue;
+          try {
+            c.write(encodeFrame(text));
+          } catch {
+            clients.delete(c);
+          }
+        }
         api.onmessage?.(text);
       } catch {
         socket.destroy();
