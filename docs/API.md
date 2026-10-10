@@ -34,12 +34,15 @@ app.post('/users', (req, res) => { /* ... */ });
 
 ### `app.loadRoutes(dir)`
 
-Auto-register routes dari folder. File `.mjs` = route. `index.mjs` → `/`. `[id]` → `:id` param.
+Auto-register routes dari folder. File `.mjs` = route. `index.mjs` → `/`. `[id]` → `:id` param. Mendukung nested folder.
 
 ```js
 await app.loadRoutes('./routes');
 // routes/about.mjs → GET /about
 // routes/item-[id].mjs → GET /item-:id → req.params.id
+// routes/users/index.mjs → GET /users
+// routes/users/[id].mjs → GET /users/42 → req.params.id === '42'
+// routes/users/[id]/posts.mjs → GET /users/42/posts
 ```
 
 ### `app.listen(port?)`

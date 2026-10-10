@@ -1,14 +1,22 @@
 import { readdirSync } from 'node:fs';
-import { join, basename, extname } from 'node:path';
+import { join, relative, sep, extname } from 'node:path';
 
 export function scanRoutes(dir) {
   const routes = [];
-  for (const file of readdirSync(dir)) {
-    if (extname(file) !== '.mjs') continue;
-    const name = basename(file, '.mjs');
-    const path = name === 'index' ? '/' : '/' + name.replace(/\[(.+?)\]/g, ':$1');
-    routes.push({ path, file: join(dir, file) });
-  }
+  const walk = (d) => {
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      const p = join(d, e.name);
+      if (e.isDirectory()) walk(p);
+      else if (extname(e.name) === '.mjs') {
+        const rel = relative(dir, p).replace(/\.mjs$/, '');
+        const path = '/' + rel.split(sep).map((s) =>
+          s === 'index' ? '' : s.replace(/\[(.+?)\]/g, ':$1')
+        ).join('/').replace(/\/+$/, '') || '/';
+        routes.push({ path, file: p });
+      }
+    }
+  };
+  walk(dir);
   return routes;
 }
 
