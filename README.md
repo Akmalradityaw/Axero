@@ -6,6 +6,8 @@ Zero-dependency fullstack framework — native HTTP + WebSocket (RFC 6455) on on
 
 **Landing page:** [website/index.html](website/index.html)
 
+**API Reference (v0.1.0-alpha frozen):** [docs/API.md](docs/API.md)
+
 ## HMR
 
 File berubah → WS broadcast `hmr:reload` → client reload. Full page reload, bukan hot swap — cukup untuk PoC.
