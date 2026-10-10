@@ -126,6 +126,15 @@
 - [x] Test driver load — MySQL + Supabase OK.
 - [x] Error handling verified — connection errors handled dengan benar.
 - [ ] Full CRUD test — butuh server MySQL/Supabase aktif.
+
+---
+
+### Sprint 13: API Freeze + Dokumentasi Final — DONE 2026-10-09
+
+- [x] `docs/API.md` — semua API publik di-freeze untuk v0.1.0-alpha.
+- [x] README update — link ke API reference.
+- [x] Semua test lolos: 3 spike + CLI + SQLite driver (5/5) + MySQL/Supabase driver load.
+- [x] v0.1.0-alpha release candidate complete.
 - [ ] MySQL driver — via `mysql2` (dependency eksternal).
 - [ ] Supabase driver — via `@supabase/supabase-js` (dependency eksternal).
 
