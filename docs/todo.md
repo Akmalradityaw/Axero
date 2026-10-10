@@ -167,6 +167,15 @@
 
 ---
 
+### Sprint 18: Design Tokens Consistency — DONE 2026-10-10
+
+- [x] `README.md` — design tokens section (bg, surface, text, muted, accent, border).
+- [x] `docs/README.md` — index dokumen dengan design tokens yang sama.
+- [x] `templates/minimal/client/index.html` — welcome page pakai warna persis dari website (#09090b, #111113, #27272a, #f4f4f5, #71717a).
+- [x] Test: 6/6 OK — semua design token konsisten dengan website.
+
+---
+
 ### Sprint 13: API Freeze + Dokumentasi Final — DONE 2026-10-09
 
 - [x] `docs/API.md` — semua API publik di-freeze untuk v0.1.0-alpha.
