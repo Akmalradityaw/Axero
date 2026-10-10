@@ -3,9 +3,16 @@
   "name": "axero",
   "version": "0.1.0-alpha",
   "type": "module",
-  "workspaces": ["packages/*", "playground/*"],
+  "workspaces": [
+    "packages/*",
+    "playground/*"
+  ],
   "scripts": {
     "test": "node --test spikes/ playground/",
     "dev": "node playground/basic-test/server.mjs"
+  },
+  "devDependencies": {
+    "@supabase/supabase-js": "^2.117.3",
+    "mysql2": "^3.24.5"
   }
 }
