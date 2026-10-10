@@ -129,6 +129,16 @@
 
 ---
 
+### Sprint 14: Supabase Driver Test End-to-End — DONE 2026-10-09
+
+- [x] Supabase project `hexaverse-axero` aktif (Hexaverse Technology Team).
+- [x] Tabel `test_users` + allow-all policy dibuat via SQL Editor.
+- [x] Insert OK — data tersimpan di Supabase.
+- [x] Select OK — `{"id":1,"name":"Akmal","email":"a@x.com"}` terverifikasi.
+- [ ] Update/delete via Supabase driver — API tersedia, belum di-test.
+
+---
+
 ### Sprint 13: API Freeze + Dokumentasi Final — DONE 2026-10-09
 
 - [x] `docs/API.md` — semua API publik di-freeze untuk v0.1.0-alpha.
