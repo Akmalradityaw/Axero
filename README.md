@@ -1,6 +1,6 @@
 # AXERO.JS
 
-<img src="brand/logo-dark.svg" alt="Axero" width="64" height="64" align="left">
+<img src="brand/readme-banner.svg" alt="Axero — Build real-time apps like breathing" width="100%">
 
 > *Build real-time apps like breathing.*
 
