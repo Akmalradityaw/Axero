@@ -4,9 +4,22 @@
 
 Zero-dependency fullstack framework — native HTTP + WebSocket (RFC 6455) on one port, fine-grained signals, no Virtual DOM.
 
+## Design Tokens
+
+| Token | Value | Usage |
+| :--- | :--- | :--- |
+| `--bg` | `#09090b` | Background |
+| `--surface` | `#111113` | Card surface |
+| `--text` | `#f4f4f5` | Primary text |
+| `--muted` | `#71717a` | Secondary text |
+| `--accent` | `#10b981` | Accent (emerald) |
+| `--border` | `#27272a` | Border |
+
 **Landing page:** [website/index.html](website/index.html)
 
 **API Reference (v0.1.0-alpha frozen):** [docs/API.md](docs/API.md)
+
+**Documentation index:** [docs/README.md](docs/README.md)
 
 ## HMR
 
