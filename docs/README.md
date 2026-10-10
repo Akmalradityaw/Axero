@@ -7,6 +7,7 @@
 | Document | Description |
 | :--- | :--- |
 | [API Reference](API.md) | Semua API publik v0.1.0-alpha (frozen) |
+| [Logo Design Brief](logo-design.md) | Design brief untuk skill logo-design |
 | [TODO](TODO.md) | Task backlog & sprint tracker |
 | [Architecture](ARCHITECTURE.md) | System architecture & technical design |
 | [Design](DESIGN.md) | Design principles & API ergonomics |
