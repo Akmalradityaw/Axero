@@ -149,6 +149,15 @@
 
 ---
 
+### Sprint 16: Template UI Redesign (Tailwind CSS) — DONE 2026-10-10
+
+- [x] `templates/minimal/client/index.html` — Tailwind CSS via CDN, clean light theme.
+- [x] Counter section (signals) + chat section (WS broadcast) dengan card layout.
+- [x] No gradient, no external JS framework — Tailwind utility only.
+- [x] Test: status 200, Tailwind CDN OK, semua elemen OK.
+
+---
+
 ### Sprint 13: API Freeze + Dokumentasi Final — DONE 2026-10-09
 
 - [x] `docs/API.md` — semua API publik di-freeze untuk v0.1.0-alpha.
