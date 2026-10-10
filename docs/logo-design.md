@@ -74,17 +74,18 @@
 
 | Token | Hex | Usage |
 | :--- | :--- | :--- |
-| Primary (dark) | `#f4f4f5` | Logo di dark bg |
-| Primary (light) | `#09090b` | Logo di light bg |
-| Accent | `#10b981` | Dot (axis point) — signature emerald |
-| Accent hover | `#34d399` | Hover state |
+| Primary (dark) | `#f4f4f5` | Arc 1 (270°) di dark bg |
+| Primary (light) | `#09090b` | Arc 1 (270°) di light bg |
+| Accent | `#10b981` | Axis dot |
+| Accent 2 | `#34d399` | Arc 2 (90°) — emerald lebih terang, kontras dengan dot |
+| Accent (light bg) | `#10b981` | Arc 2 di light bg |
 
 **Construction:**
 - Canvas: 256×256 viewBox
-- Axis dot: circle r=10 di (128,128)
-- Arc 1: 3/4 lingkaran r=90, stroke→filled path
-- Arc 2: 1/4 lingkaran r=90, offset 90° via rotate transform
-- Grid: 8px base unit, arcs snap ke 45°/90°
+- Axis dot: circle r=10 di (128,128), emerald #10b981
+- Arc 1: 270° lingkaran r=90, stroke 24, linecap round, putih (dark) / hitam (light)
+- Arc 2: 90° lingkaran r=90, stroke 24, linecap round, emerald #34d399 (dark) / #10b981 (light)
+- Stroke-based (bukan filled path) — tidak ada clipping issue
 
 **Usage:**
 - Navbar: `logo-dark.svg` (dark) / `logo-light.svg` (light)
