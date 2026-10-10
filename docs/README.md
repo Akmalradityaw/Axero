@@ -1,5 +1,7 @@
 # AXERO.JS Documentation
 
+<img src="../brand/logo-dark.svg" alt="Axero" width="48" height="48" align="left">
+
 *Design tokens: dark theme (#09090b), emerald accent (#10b981), zinc neutrals.*
 
 ## Documents
