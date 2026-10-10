@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 256">
+  <title>Axero — Hex Shift Lockup</title>
+  <polygon points="128,28 214,78 214,178 128,228 42,178 42,78" fill="black"/>
+  <polygon points="128,52 190,88 190,168 128,204 66,168 66,88" fill="white"/>
+  <polygon points="148,62 224,112 224,212 148,262 72,212 72,112" fill="black" opacity="0.15"/>
+  <text x="256" y="160" font-family="Inter, system-ui, sans-serif" font-size="96" font-weight="700" letter-spacing="-0.03em" fill="black">Axero</text>
+</svg>
