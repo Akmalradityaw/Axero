@@ -117,6 +117,15 @@
 - [x] SQLite driver test end-to-end — 5/5 OK di Node v24.
 - [ ] MySQL/Supabase test end-to-end — butuh install dependency eksternal.
 - [ ] API freeze + dokumentasi final v0.1.0-alpha.
+
+---
+
+### Sprint 12: MySQL & Supabase Driver Test — DONE 2026-10-09
+
+- [x] `npm install --save-dev mysql2 @supabase/supabase-js` — dependencies installed.
+- [x] Test driver load — MySQL + Supabase OK.
+- [x] Error handling verified — connection errors handled dengan benar.
+- [ ] Full CRUD test — butuh server MySQL/Supabase aktif.
 - [ ] MySQL driver — via `mysql2` (dependency eksternal).
 - [ ] Supabase driver — via `@supabase/supabase-js` (dependency eksternal).
 
