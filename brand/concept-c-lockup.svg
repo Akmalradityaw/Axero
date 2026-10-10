@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 256">
+  <title>Axero — Tilted A Lockup</title>
+  <g transform="rotate(12 128 128)">
+    <path d="M 128 36 L 204 224 L 172 224 L 128 128 L 84 224 L 52 224 Z M 104 148 L 152 148 L 146 168 L 110 168 Z" fill="black" fill-rule="evenodd"/>
+  </g>
+  <text x="256" y="160" font-family="Inter, system-ui, sans-serif" font-size="96" font-weight="700" letter-spacing="-0.03em" fill="black">Axero</text>
+</svg>
