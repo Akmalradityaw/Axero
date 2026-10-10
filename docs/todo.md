@@ -105,7 +105,18 @@
 - [x] `packages/orm/src/sqlite.mjs` — driver SQLite via `node:sqlite` (Node 22.5+).
 - [x] `createORM({ driver: 'sqlite', url })` — query/execute API.
 - [x] Fallback error dengan hint Node 22.5+ jika `node:sqlite` tidak tersedia.
-- [ ] Test end-to-end — butuh Node 22.5+ (skip di Node 20).
+- [x] Test end-to-end di Node v24 — 5/5 OK (create table, insert, select, update, delete).
+
+---
+
+### Sprint 11: Fase 3 — Stabilisasi — DONE 2026-10-09
+
+- [x] Security audit — Origin check di WS handshake (CSWSH protection).
+- [x] Broadcast loop hardening — `writable` check + try/catch per socket.
+- [x] Stress test — 100 koneksi WS bersamaan, broadcast OK.
+- [x] SQLite driver test end-to-end — 5/5 OK di Node v24.
+- [ ] MySQL/Supabase test end-to-end — butuh install dependency eksternal.
+- [ ] API freeze + dokumentasi final v0.1.0-alpha.
 - [ ] MySQL driver — via `mysql2` (dependency eksternal).
 - [ ] Supabase driver — via `@supabase/supabase-js` (dependency eksternal).
 
