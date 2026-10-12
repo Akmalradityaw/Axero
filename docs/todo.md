@@ -186,6 +186,15 @@
 
 ---
 
+### Sprint 20: `axero build` — Production Build Command — DONE 2026-10-10
+
+- [x] CLI `axero build` — copy app ke `dist/`, skip `node_modules`/`dist`/`.git`.
+- [x] `dist/manifest.json` — build timestamp + app name.
+- [x] Test: 6/6 OK (build, server entry, client html, client js, routes, manifest, dist server 200).
+- [ ] Production optimize — minify, bundle, tree-shake (add saat butuh).
+
+---
+
 ### Sprint 13: API Freeze + Dokumentasi Final — DONE 2026-10-09
 
 - [x] `docs/API.md` — semua API publik di-freeze untuk v0.1.0-alpha.

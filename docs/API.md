@@ -138,6 +138,7 @@ axero --version          # 0.1.0-alpha
 axero --doctor           # check Node >= 20
 axero create <app-name>  # new app dari templates/minimal
 axero dev                # watch mode + HMR
+axero build              # production build → dist/
 ```
 
 ---
