@@ -38,6 +38,22 @@ test('axero --doctor on node >= 20', async () => {
   assert.match(out, /ok: node/);
 });
 
+test('axero --help lists commands', async () => {
+  const { code, out } = await run(['--help']);
+  assert.equal(code, 0);
+  assert.match(out, /usage: axero <command>/);
+  assert.match(out, /create <app-name>/);
+  assert.match(out, /dev/);
+  assert.match(out, /build/);
+});
+
+test('axero unknown command fails with help', async () => {
+  const { code, out } = await run(['ngawur']);
+  assert.equal(code, 1);
+  assert.match(out, /FAIL: unknown command "ngawur"/);
+  assert.match(out, /usage: axero <command>/);
+});
+
 test('axero no args prints usage', async () => {
   const { code, out } = await run([]);
   assert.equal(code, 0);
