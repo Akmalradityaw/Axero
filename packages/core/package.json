@@ -3,9 +3,11 @@
   "version": "0.1.0-alpha",
   "type": "module",
   "main": "./src/index.mjs",
+  "types": "./index.d.ts",
   "exports": {
-    ".": "./src/index.mjs",
-    "./signals": "./src/signals.mjs",
-    "./hmr": "./src/hmr.mjs"
-  }
+    ".": { "types": "./index.d.ts", "default": "./src/index.mjs" },
+    "./signals": { "types": "./signals.d.ts", "default": "./src/signals.mjs" },
+    "./hmr": { "types": "./hmr.d.ts", "default": "./src/hmr.mjs" }
+  },
+  "files": ["src", "index.d.ts", "signals.d.ts", "hmr.d.ts"]
 }

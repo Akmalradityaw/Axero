@@ -8,7 +8,7 @@
     "playground/*"
   ],
   "scripts": {
-    "test": "node --test spikes/ playground/",
+    "test": "node --test \"tests/*.test.mjs\"",
     "dev": "node playground/basic-test/server.mjs"
   },
   "devDependencies": {

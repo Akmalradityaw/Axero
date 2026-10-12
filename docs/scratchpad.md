@@ -68,6 +68,12 @@ server.listen(3000, () => {
   Jika client menutup tab browser secara tiba-tiba tanpa mengirim frame *Close*, server harus menangani event `socket.on('error')` dan `socket.on('close')` agar tidak memicu memory leak atau crash pada proses Node.js.
 * **CORS Header pada Handshake:**  
   Saat proses upgrade socket, kita harus memvalidasi header `Origin` untuk mencegah eksploitasi Cross-Site WebSocket Hijacking (CSWSH).
+* **CLI Error Patterns (Root Cause Analysis, 2026-10-12):**  
+  Tiga bug CLI yang sama-sama lolos karena tidak ada test — sekarang dicover `tests/cli.test.mjs`:
+  1. `axero dev` → usage error: `dev` diparse sebagai flag `--dev` (`parseArgs` strict). Fix: posisi argumen pakai `positionals`, bukan flags.
+  2. `axero create` → ENOENT template: path relatif salah level (`../../` vs `../../../`). Fix: resolve via `new URL(..., import.meta.url)`.
+  3. `axero build` → `ERR_FS_CP_EINVAL`: `cpSync(src, dest)` tidak boleh copy ke subdirectory of self. Fix: iterate `readdirSync` per top-level item.
+* **`new URL().pathname` di Windows:** memberi `/C:/...%20...` (URL-encoded, leading slash). Selalu pakai `fileURLToPath()` — bug ini pernah bikin test suite gagal 7/8.
 
 ---
 
