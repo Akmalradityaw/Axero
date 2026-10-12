@@ -3,5 +3,9 @@
   "version": "0.1.0-alpha",
   "type": "module",
   "main": "./src/index.mjs",
-  "exports": "./src/index.mjs"
+  "types": "./index.d.ts",
+  "exports": {
+    ".": { "types": "./index.d.ts", "default": "./src/index.mjs" }
+  },
+  "files": ["src", "index.d.ts"]
 }

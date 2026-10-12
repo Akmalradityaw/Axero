@@ -2,3 +2,5 @@ node_modules/
 dist/
 .env
 .codegraph/
+tests/.tmp*
+tests/.tmp-orm.json

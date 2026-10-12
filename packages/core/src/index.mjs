@@ -40,7 +40,14 @@ export function createServer() {
     get: (path, fn) => routes.set(`GET ${path}`, fn),
     post: (path, fn) => routes.set(`POST ${path}`, fn),
     loadRoutes: async (dir) => {
-      for (const { path, file } of scanRoutes(dir)) {
+      let entries;
+      try {
+        entries = scanRoutes(dir);
+      } catch (err) {
+        if (err.code === 'ENOENT') throw new Error(`Routes folder not found: ${dir} — create it or fix app.loadRoutes() path`);
+        throw err;
+      }
+      for (const { path, file } of entries) {
         const mod = await import(pathToFileURL(file).href);
         routes.set(`GET ${path}`, mod.default);
       }

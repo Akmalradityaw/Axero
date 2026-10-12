@@ -117,7 +117,7 @@ const ws = createWS(app);
 ws.on('connection', (socket) => {
   socket.send('connected');
 });
-ws.broadcast('hello'); // ke semua client kecuali sender
+ws.broadcast('hello'); // ke semua client yang terhubung
 ```
 
 ### `createWS` dengan CORS (Origin check)
