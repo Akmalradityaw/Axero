@@ -1,5 +1,7 @@
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
+import { mkdirSync, writeFileSync, rmSync } from 'node:fs';
+import { join } from 'node:path';
 import { createServer } from '../packages/core/src/index.mjs';
 
 const servers = [];
@@ -47,4 +49,41 @@ test('unknown route → 404', async () => {
   const base = await boot((app) => app.get('/x', (req, res) => res.end('x')));
   const res = await fetch(`${base}/nope`);
   assert.equal(res.status, 404);
+});
+
+test('static serves file + index.html at root', async () => {
+  const dir = join(process.cwd(), 'tests', '.tmp-static');
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, 'index.html'), '<h1>hi</h1>');
+  writeFileSync(join(dir, 'app.js'), 'console.log(1)');
+  const base = await boot((app) => app.static(dir));
+  assert.equal(await (await fetch(`${base}/`)).text(), '<h1>hi</h1>');
+  const js = await fetch(`${base}/app.js`);
+  assert.match(js.headers.get('content-type'), /javascript/);
+  assert.equal(await js.text(), 'console.log(1)');
+  rmSync(dir, { recursive: true, force: true });
+});
+
+test('static blocks path traversal', async () => {
+  const dir = join(process.cwd(), 'tests', '.tmp-static2');
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, 'index.html'), 'x');
+  const base = await boot((app) => app.static(dir));
+  const res = await fetch(`${base}/..%2F..%2Fpackage.json`);
+  assert.notEqual(res.status, 200);
+  rmSync(dir, { recursive: true, force: true });
+});
+
+test('loadRoutes registers named POST export', async () => {
+  const dir = join(process.cwd(), 'tests', '.tmp-routes');
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, 'thing.mjs'), 'export default (_, res) => res.end("get");\nexport const POST = (_, res) => res.end("post");');
+  const app = createServer();
+  await app.loadRoutes(dir);
+  await app.listen(0);
+  servers.push(app.node);
+  const base = `http://127.0.0.1:${app.node.address().port}`;
+  assert.equal(await (await fetch(`${base}/thing`)).text(), 'get');
+  assert.equal(await (await fetch(`${base}/thing`, { method: 'POST' })).text(), 'post');
+  rmSync(dir, { recursive: true, force: true });
 });

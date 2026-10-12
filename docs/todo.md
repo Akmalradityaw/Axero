@@ -205,3 +205,30 @@ Semua item DoD dari task file terpenuhi:
 - [x] **LICENSE** (MIT 2026, Hexaverse Technology - Akmal Raditya Wijaya) + **`.editorconfig`**.
 - [x] **Workspace audit** — symlink normal (`npm ls`), `playground/basic-test` terisolasi sandbox, tidak ada anomali `node_modules`.
 - [x] Doc fix: `docs/API.md` — `ws.broadcast` comment "kecuali sender" → "ke semua client" (match implementasi).
+
+---
+
+### Sprint 23: Template System (3 jenis) + Core Static/POST — DONE 2026-10-12
+
+Konteks: perbaikan inti framework di bagian templates. 3 jenis template + fix bug yang bikin template rusak di browser/luar repo.
+
+**Core fixes:**
+- [x] `app.static(dir)` — static file serving (fallback setelah route), `/`→`index.html`, tolak `..` traversal, content-type by ext. ponytail: tanpa cache/ETag/gzip — add saat traffic nyata.
+- [x] `loadRoutes` — named export `POST` di file route sekarang di-register (dulu GET-only).
+- [x] Test: static 200/index/traversal, POST export — OK.
+
+**Template bugs fixed:**
+- [x] **Signals di browser** — import map `@axero/core/signals` → `/signals` + route `routes/signals.mjs` (resolve source via `createRequire`). Dulu bare specifier gagal di browser.
+- [x] **Logo 404** — path `../../../brand/` keluar app root → pindah jadi `client/logo.svg` served via `app.static`.
+- [x] **`workspace:*`** → versi `"0.1.0-alpha"` + ponytail comment (ceiling: app luar repo jalan setelah npm publish).
+
+**3 Template (`templates/`):**
+- [x] `default/` — fullstack showcase (isi minimal lama + semua fix di atas).
+- [x] `minimal/` — barebone: 1 route, ~10 baris, tanpa client/WS.
+- [x] `backend-only/` — REST (GET+POST via ORM JSON) + WS welcome, tanpa frontend.
+
+**CLI:**
+- [x] `axero create <name> [template]` — default `default`, validasi `readdirSync('templates/')`, error tampilkan list template valid.
+- [x] Test: create default/minimal/backend-only/invalid — OK. Integration: `/`, `/signals` (isi `createSignal`), `/logo.svg`, `/app` — 4/4 OK.
+
+**Docs:** `docs/API.md` (app.static, POST export, CLI [template]), `README.md`, `docs/architecture.md` (3 template).

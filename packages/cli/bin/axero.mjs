@@ -17,9 +17,15 @@ else if (values.doctor) {
 } else if (cmd === 'dev') {
   spawn('node', ['--watch', 'server.mjs'], { cwd: process.cwd(), stdio: 'inherit' });
 } else if (cmd === 'create') {
-  const name = args[0];
+  const [name, template = 'default'] = args;
   if (!name) {
-    console.log('usage: axero create <app-name>');
+    console.log('usage: axero create <app-name> [template]');
+    process.exit(1);
+  }
+  const templatesDir = new URL('../../../templates/', import.meta.url);
+  const available = readdirSync(templatesDir).filter((d) => !d.startsWith('.'));
+  if (!available.includes(template)) {
+    console.log(`FAIL: template "${template}" tidak ada.\nValid: ${available.join(', ')}`);
     process.exit(1);
   }
   const dest = join(process.cwd(), name);
@@ -27,8 +33,8 @@ else if (values.doctor) {
     console.log(`FAIL: ${dest} already exists`);
     process.exit(1);
   }
-  cpSync(new URL('../../../templates/minimal/', import.meta.url), dest, { recursive: true });
-  console.log(`created ${name} — cd ${name} && axero dev`);
+  cpSync(new URL(`${template}/`, templatesDir), dest, { recursive: true });
+  console.log(`created ${name} (template: ${template}) — cd ${name} && axero dev`);
 } else if (cmd === 'build') {
   const src = process.cwd();
   const dest = join(src, 'dist');
@@ -41,5 +47,5 @@ else if (values.doctor) {
   writeFileSync(join(dest, 'manifest.json'), JSON.stringify({ built: new Date().toISOString(), name: 'axero-app' }, null, 2));
   console.log(`built → ${dest}`);
 } else {
-  console.log(`axero v${VERSION}\nusage: axero [--version|--help|--doctor|create <app-name>|dev|build]`);
+  console.log(`axero v${VERSION}\nusage: axero [--version|--help|--doctor|create <app-name> [template]|dev|build]`);
 }

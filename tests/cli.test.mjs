@@ -63,6 +63,31 @@ test('axero create existing dir fails', async () => {
   assert.match(out, /FAIL.*already exists/);
 });
 
+test('axero create with explicit template (minimal)', async () => {
+  const { code, out } = await run(['create', 'bareapp', 'minimal']);
+  assert.equal(code, 0);
+  assert.match(out, /template: minimal/);
+  assert.ok(existsSync(join(TMP, 'bareapp', 'server.mjs')));
+  assert.ok(!existsSync(join(TMP, 'bareapp', 'client')), 'minimal tanpa client');
+});
+
+test('axero create backend-only template', async () => {
+  const { code } = await run(['create', 'apiapp', 'backend-only']);
+  assert.equal(code, 0);
+  assert.ok(existsSync(join(TMP, 'apiapp', 'routes', 'users.mjs')));
+  assert.ok(!existsSync(join(TMP, 'apiapp', 'client')), 'backend-only tanpa client');
+});
+
+test('axero create invalid template lists valid ones', async () => {
+  const { code, out } = await run(['create', 'x', 'ngawur']);
+  assert.equal(code, 1);
+  assert.match(out, /template "ngawur" tidak ada/);
+  assert.match(out, /default/);
+  assert.match(out, /minimal/);
+  assert.match(out, /backend-only/);
+  assert.ok(!existsSync(join(TMP, 'x')));
+});
+
 test('axero build creates dist with manifest', async () => {
   const app = join(TMP, 'buildapp');
   mkdirSync(join(app, 'client'), { recursive: true });
@@ -100,6 +125,13 @@ test('integration: create → build → run dist server', async () => {
   try {
     const res = await fetch('http://localhost:3146/');
     assert.equal(res.status, 200);
+    const signals = await fetch('http://localhost:3146/signals');
+    assert.match(signals.headers.get('content-type'), /javascript/);
+    assert.match(await signals.text(), /createSignal/);
+    const logo = await fetch('http://localhost:3146/logo.svg');
+    assert.equal(logo.status, 200);
+    const appjs = await fetch('http://localhost:3146/app');
+    assert.equal(appjs.status, 200);
   } finally {
     srv.kill();
     await new Promise((r) => setTimeout(r, 300));
