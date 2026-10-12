@@ -4,13 +4,14 @@ import { spawn } from 'node:child_process';
 import { existsSync, readFileSync, rmSync, mkdirSync, writeFileSync, cpSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import net from 'node:net';
 
 const CLI = fileURLToPath(new URL('../packages/cli/bin/axero.mjs', import.meta.url));
 const TMP = join(process.cwd(), 'tests', '.tmp');
 
 function run(args, opts = {}) {
   return new Promise((resolve) => {
-    const p = spawn('node', [CLI, ...args], { cwd: opts.cwd || TMP, stdio: ['ignore', 'pipe', 'pipe'] });
+    const p = spawn('node', [CLI, ...args], { cwd: opts.cwd || TMP, env: opts.env, stdio: ['ignore', 'pipe', 'pipe'] });
     let out = '';
     p.stdout.on('data', (d) => (out += d));
     p.stderr.on('data', (d) => (out += d));
@@ -76,6 +77,16 @@ test('axero create backend-only template', async () => {
   assert.equal(code, 0);
   assert.ok(existsSync(join(TMP, 'apiapp', 'routes', 'users.mjs')));
   assert.ok(!existsSync(join(TMP, 'apiapp', 'client')), 'backend-only tanpa client');
+});
+
+test('axero dev refuses busy port', async () => {
+  const blocker = net.createServer();
+  await new Promise((r) => blocker.listen(0, '127.0.0.1', r));
+  const port = blocker.address().port;
+  const { code, out } = await run(['dev'], { cwd: TMP, env: { ...process.env, PORT: String(port) } });
+  assert.equal(code, 1);
+  assert.match(out, /port \d+ dipakai proses lain/);
+  await new Promise((r) => blocker.close(r));
 });
 
 test('axero create invalid template lists valid ones', async () => {

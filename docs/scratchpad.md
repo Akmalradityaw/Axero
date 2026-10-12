@@ -74,6 +74,7 @@ server.listen(3000, () => {
   2. `axero create` → ENOENT template: path relatif salah level (`../../` vs `../../../`). Fix: resolve via `new URL(..., import.meta.url)`.
   3. `axero build` → `ERR_FS_CP_EINVAL`: `cpSync(src, dest)` tidak boleh copy ke subdirectory of self. Fix: iterate `readdirSync` per top-level item.
 * **`new URL().pathname` di Windows:** memberi `/C:/...%20...` (URL-encoded, leading slash). Selalu pakai `fileURLToPath()` — bug ini pernah bikin test suite gagal 7/8.
+* **Orphan `node --watch`:** kill terminal/CTRL+C saat `axero dev` bisa meninggalkan proses `node --watch` + `server.mjs` hidup → port 3000 pegang → `axero dev` berikutnya loop `EADDRINUSE` + `Failed running server.mjs`. Fix Sprint 24: pre-flight port check + tree kill saat exit.
 
 ---
 

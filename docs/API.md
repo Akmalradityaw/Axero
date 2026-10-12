@@ -148,7 +148,7 @@ const ws = createWS(app, {
 axero --version                 # 0.1.0-alpha
 axero --doctor                  # check Node >= 20
 axero create <app-name> [tmpl]  # default template: default
-axero dev                       # watch mode + HMR
+axero dev                       # watch mode + HMR (pre-flight: tolak port dipakai)
 axero build                     # production build → dist/
 ```
 
