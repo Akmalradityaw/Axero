@@ -26,7 +26,7 @@ else if (values.doctor) {
 } else if (cmd === 'dev') {
   const port = Number(process.env.PORT ?? 3000);
   if (await portBusy(port)) {
-    console.log(`FAIL: port ${port} dipakai proses lain.\nHint: kill prosesnya (taskkill /f /im node.exe) atau PORT=<port> axero dev`);
+    console.log(`FAIL: port ${port} dipakai proses lain.\nHint: cari prosesnya — Windows: netstat -ano | findstr :${port} / Mac: lsof -i :${port}. Atau langsung: PORT=<port> axero dev`);
     process.exit(1);
   }
   const child = spawn('node', ['--watch', 'server.mjs'], { cwd: process.cwd(), stdio: 'inherit' });
