@@ -232,3 +232,24 @@ Konteks: perbaikan inti framework di bagian templates. 3 jenis template + fix bu
 - [x] Test: create default/minimal/backend-only/invalid — OK. Integration: `/`, `/signals` (isi `createSignal`), `/logo.svg`, `/app` — 4/4 OK.
 
 **Docs:** `docs/API.md` (app.static, POST export, CLI [template]), `README.md`, `docs/architecture.md` (3 template).
+
+---
+
+### Sprint 24: `axero dev` — Port Pre-flight + Orphan Process Cleanup — DONE 2026-10-12
+
+Konteks: loop `EADDRINUSE` + `Failed running server.mjs` saat `axero dev` diulang — orphan process pegang port.
+
+- [x] **Pre-flight port check** — probe `net.connect` sebelum spawn; port busy → `FAIL: port X dipakai proses lain` + hint kill/`PORT=` → exit 1, tanpa spawn proses yang pasti gagal.
+- [x] **Child cleanup** — simpan ref child; `exit`/`SIGINT`/`SIGTERM` → kill child. Windows: `taskkill /T /F` (process tree: `node --watch` + `server.mjs`). ponytail: Windows-only, unix cukup `child.kill()`.
+- [x] Test: `axero dev refuses busy port` (occupy ephemeral port → exit 1 + pesan). 35/35 OK.
+- [ ] Restart otomatis saat port bebas lagi — add jika user minta (bukan bug).
+
+---
+
+### Sprint 25: Fix Hint Port Pre-flight (non-node occupant) — DONE 2026-10-12
+
+Konteks: user dapat `FAIL: port 3000 dipakai proses lain` — ternyata occupant-nya Grafana, bukan node. Hint lama `taskkill /f /im node.exe` misleading.
+
+- [x] Hint diperbaiki: perintah cari proses per-platform (`netstat -ano | findstr :PORT` / `lsof -i :PORT`) + fallback `PORT=<port> axero dev`.
+- [x] Verifikasi live: occupant Grafana di port 3000 → pre-flight exit 1 dengan hint benar. Flow normal di PORT=3199: `/`, `/logo.svg`, `/signals`, `/app` → 200 semua. Tree kill OK.
+- [x] Test masih hijau (13/13 CLI, regex lama tetap match).
