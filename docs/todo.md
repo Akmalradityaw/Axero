@@ -246,6 +246,17 @@ Konteks: loop `EADDRINUSE` + `Failed running server.mjs` saat `axero dev` diulan
 
 ---
 
+### Sprint 26: CLI Tidy — Help + Warna ANSI + Unknown Command — DONE 2026-10-12
+
+- [x] Handler `--help` beneran (dulu jatuh ke else kebetulan): versi + tagline + `usage:` + daftar command 1/baris.
+- [x] Unknown command → `FAIL: unknown command "X"` + help, exit 1 (dulu exit 0).
+- [x] Warna ANSI manual: merah `FAIL:`, hijau `ok:/created/built`, dim `Hint:`/deskripsi. Tanpa dep, auto-off saat di-pipe (test/CI tetap plain).
+- [x] `create`/`build` sukses 2 baris: hasil hijau + tindak lanjut dim.
+- [x] Fix branch order: `--doctor` tanpa positional sempat kena `!cmd` → help. Doctor dicek sebelum help.
+- [x] Test: `--help` isi command, unknown exit 1. 37/37 OK.
+
+---
+
 ### Sprint 25: Fix Hint Port Pre-flight (non-node occupant) — DONE 2026-10-12
 
 Konteks: user dapat `FAIL: port 3000 dipakai proses lain` — ternyata occupant-nya Grafana, bukan node. Hint lama `taskkill /f /im node.exe` misleading.
