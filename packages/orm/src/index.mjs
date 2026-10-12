@@ -87,5 +87,8 @@ export async function createORM(config = {}) {
   if (config.driver === 'sqlite') return createSQLite(config);
   if (config.driver === 'mysql') return createMySQL(config);
   if (config.driver === 'supabase') return createSupabase(config);
+  if (config.driver && config.driver !== 'json') {
+    throw new Error(`Unknown driver "${config.driver}". Valid: json, sqlite, mysql, supabase`);
+  }
   return createJSON(config);
 }
