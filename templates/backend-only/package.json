@@ -1,0 +1,10 @@
+{
+  "name": "axero-backend-only",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@axero/core": "0.1.0-alpha",
+    "@axero/ws": "0.1.0-alpha",
+    "@axero/orm": "0.1.0-alpha"
+  }
+}

@@ -3,7 +3,6 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@axero/core": "workspace:*",
-    "@axero/ws": "workspace:*"
+    "@axero/core": "0.1.0-alpha"
   }
 }

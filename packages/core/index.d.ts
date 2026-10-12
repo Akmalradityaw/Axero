@@ -12,6 +12,7 @@ export interface App {
   node: Server;
   get(path: string, handler: Handler): void;
   post(path: string, handler: Handler): void;
+  static(dir: string): void;
   loadRoutes(dir: string): Promise<void>;
   listen(port?: number): Promise<void>;
 }

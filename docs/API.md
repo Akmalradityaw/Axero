@@ -36,7 +36,7 @@ app.post('/users', (req, res) => { /* ... */ });
 
 ### `app.loadRoutes(dir)`
 
-Auto-register routes dari folder. File `.mjs` = route. `index.mjs` → `/`. `[id]` → `:id` param. Mendukung nested folder.
+Auto-register routes dari folder. File `.mjs` = route. `index.mjs` → `/`. `[id]` → `:id` param. Mendukung nested folder. Default export = handler GET; named export `POST` = handler POST (method lain: register manual via `app.get/post`).
 
 ```js
 await app.loadRoutes('./routes');
@@ -45,6 +45,17 @@ await app.loadRoutes('./routes');
 // routes/users/index.mjs → GET /users
 // routes/users/[id].mjs → GET /users/42 → req.params.id === '42'
 // routes/users/[id]/posts.mjs → GET /users/42/posts
+// routes/users.mjs (export default + export POST) → GET & POST /users
+```
+
+### `app.static(dir)`
+
+Serve file statis dari folder — fallback setelah route match. `/` → `index.html`. Path traversal (`..`) ditolak. Content-type by extension (html/js/mjs/css/json/svg/png/jpg/ico).
+
+```js
+app.static('./client');
+// ./client/index.html → GET /
+// ./client/app.js     → GET /app.js
 ```
 
 ### `app.listen(port?)`
@@ -134,12 +145,14 @@ const ws = createWS(app, {
 ## @axero/cli
 
 ```bash
-axero --version          # 0.1.0-alpha
-axero --doctor           # check Node >= 20
-axero create <app-name>  # new app dari templates/minimal
-axero dev                # watch mode + HMR
-axero build              # production build → dist/
+axero --version                 # 0.1.0-alpha
+axero --doctor                  # check Node >= 20
+axero create <app-name> [tmpl]  # default template: default
+axero dev                       # watch mode + HMR
+axero build                     # production build → dist/
 ```
+
+**Templates** (`templates/`): `default` (fullstack showcase: welcome + signals + WS chat), `minimal` (barebone, 1 route, tanpa client), `backend-only` (REST + WS + ORM JSON, tanpa frontend).
 
 ---
 
