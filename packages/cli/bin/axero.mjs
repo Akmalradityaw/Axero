@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { parseArgs } from 'node:util';
 import { spawn } from 'node:child_process';
-import { cpSync, existsSync } from 'node:fs';
+import { cpSync, existsSync, rmSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 
 // ponytail: create = plain recursive copy, no prompts/scaffolding questions — add when users need choices.
@@ -29,6 +29,17 @@ else if (values.doctor) {
   }
   cpSync(new URL('../../../templates/minimal/', import.meta.url), dest, { recursive: true });
   console.log(`created ${name} — cd ${name} && axero dev`);
+} else if (cmd === 'build') {
+  const src = process.cwd();
+  const dest = join(src, 'dist');
+  rmSync(dest, { recursive: true, force: true });
+  mkdirSync(dest, { recursive: true });
+  for (const item of readdirSync(src)) {
+    if (item === 'node_modules' || item === 'dist' || item === '.git') continue;
+    cpSync(join(src, item), join(dest, item), { recursive: true });
+  }
+  writeFileSync(join(dest, 'manifest.json'), JSON.stringify({ built: new Date().toISOString(), name: 'axero-app' }, null, 2));
+  console.log(`built → ${dest}`);
 } else {
-  console.log(`axero v${VERSION}\nusage: axero [--version|--help|--doctor|create <app-name>|dev]`);
+  console.log(`axero v${VERSION}\nusage: axero [--version|--help|--doctor|create <app-name>|dev|build]`);
 }
