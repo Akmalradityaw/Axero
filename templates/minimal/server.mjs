@@ -1,13 +1,8 @@
 import { createServer } from '@axero/core';
-import { createWS } from '@axero/ws';
-import { watchFiles } from '@axero/core/hmr';
 
+// ponytail: deps use published version — hanya jalan di dalam repo sebelum npm publish;
+// ceiling: pre-publish; upgrade path: npm publish / npm link.
 const app = createServer();
-await app.loadRoutes('./routes');
-const ws = createWS(app);
-ws.on('connection', (c) => c.send('connected'));
-
-watchFiles('./routes', () => ws.broadcast('hmr:reload'));
-
+app.get('/', (_, res) => res.json({ ok: true, msg: 'axero minimal' }));
 await app.listen(process.env.PORT ?? 3000);
 console.log('axero app on http://localhost:' + (process.env.PORT ?? 3000));

@@ -1,0 +1,9 @@
+{
+  "name": "axero-default",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@axero/core": "0.1.0-alpha",
+    "@axero/ws": "0.1.0-alpha"
+  }
+}

@@ -15,8 +15,10 @@ axero (Root Monorepo)
  │    ├── core/      (@axero/core)     --> Runtime HTTP server, file router, reactivity engine
  │    ├── ws/        (@axero/ws)       --> Modul koneksi & pub/sub native WebSocket
  │    └── orm/       (@axero/orm)      --> Abstraksi database & migrasi (fase berikutnya)
- ├── templates/                        --> Template starter proyek pengguna
- │    ├── minimal/                     --> Starter paling sederhana untuk pengujian
+  ├── templates/                        --> Template starter proyek pengguna
+  │    ├── default/                     --> Starter fullstack default (welcome + signals + WS chat)
+  │    ├── minimal/                     --> Starter barebone (1 route, tanpa client)
+  │    ├── backend-only/                --> API & WebSocket tanpa frontend
  │    └── fullstack/                   --> Starter client + server + WS lengkap
  └── playground/                       --> Area uji coba lokal langsung (dogfooding)
 ```
