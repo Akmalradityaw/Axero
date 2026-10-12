@@ -243,3 +243,13 @@ Konteks: loop `EADDRINUSE` + `Failed running server.mjs` saat `axero dev` diulan
 - [x] **Child cleanup** — simpan ref child; `exit`/`SIGINT`/`SIGTERM` → kill child. Windows: `taskkill /T /F` (process tree: `node --watch` + `server.mjs`). ponytail: Windows-only, unix cukup `child.kill()`.
 - [x] Test: `axero dev refuses busy port` (occupy ephemeral port → exit 1 + pesan). 35/35 OK.
 - [ ] Restart otomatis saat port bebas lagi — add jika user minta (bukan bug).
+
+---
+
+### Sprint 25: Fix Hint Port Pre-flight (non-node occupant) — DONE 2026-10-12
+
+Konteks: user dapat `FAIL: port 3000 dipakai proses lain` — ternyata occupant-nya Grafana, bukan node. Hint lama `taskkill /f /im node.exe` misleading.
+
+- [x] Hint diperbaiki: perintah cari proses per-platform (`netstat -ano | findstr :PORT` / `lsof -i :PORT`) + fallback `PORT=<port> axero dev`.
+- [x] Verifikasi live: occupant Grafana di port 3000 → pre-flight exit 1 dengan hint benar. Flow normal di PORT=3199: `/`, `/logo.svg`, `/signals`, `/app` → 200 semua. Tree kill OK.
+- [x] Test masih hijau (13/13 CLI, regex lama tetap match).
