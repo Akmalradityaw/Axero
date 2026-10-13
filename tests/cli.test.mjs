@@ -35,13 +35,13 @@ test('axero --version', async () => {
 test('axero --doctor on node >= 20', async () => {
   const { code, out } = await run(['--doctor']);
   assert.equal(code, 0);
-  assert.match(out, /ok: node/);
+  assert.match(out, /Node\.js version:/);
 });
 
 test('axero --help lists commands', async () => {
   const { code, out } = await run(['--help']);
   assert.equal(code, 0);
-  assert.match(out, /usage: axero <command>/);
+  assert.match(out, /\$ axero <command>/);
   assert.match(out, /create <app-name>/);
   assert.match(out, /dev/);
   assert.match(out, /build/);
@@ -50,26 +50,26 @@ test('axero --help lists commands', async () => {
 test('axero unknown command fails with help', async () => {
   const { code, out } = await run(['ngawur']);
   assert.equal(code, 1);
-  assert.match(out, /FAIL: unknown command "ngawur"/);
-  assert.match(out, /usage: axero <command>/);
+  assert.match(out, /Unknown command "ngawur"/);
+  assert.match(out, /USAGE/);
 });
 
 test('axero no args prints usage', async () => {
   const { code, out } = await run([]);
   assert.equal(code, 0);
-  assert.match(out, /usage: axero/);
+  assert.match(out, /USAGE/);
 });
 
 test('axero create without name fails with usage', async () => {
   const { code, out } = await run(['create']);
   assert.equal(code, 1);
-  assert.match(out, /usage: axero create/);
+  assert.match(out, /Usage: axero create/);
 });
 
 test('axero create copies template', async () => {
   const { code, out } = await run(['create', 'myapp']);
   assert.equal(code, 0);
-  assert.match(out, /created myapp/);
+  assert.match(out, /Project created successfully!/);
   assert.ok(existsSync(join(TMP, 'myapp', 'server.mjs')));
   assert.ok(existsSync(join(TMP, 'myapp', 'client', 'index.html')));
 });
@@ -77,7 +77,7 @@ test('axero create copies template', async () => {
 test('axero create existing dir fails', async () => {
   const { code, out } = await run(['create', 'myapp']);
   assert.equal(code, 1);
-  assert.match(out, /FAIL.*already exists/);
+  assert.match(out, /already exists/);
 });
 
 test('axero create with explicit template (minimal)', async () => {
@@ -101,14 +101,14 @@ test('axero dev refuses busy port', async () => {
   const port = blocker.address().port;
   const { code, out } = await run(['dev'], { cwd: TMP, env: { ...process.env, PORT: String(port) } });
   assert.equal(code, 1);
-  assert.match(out, /port \d+ dipakai proses lain/);
+  assert.match(out, /Port \d+ is currently in use/);
   await new Promise((r) => blocker.close(r));
 });
 
 test('axero create invalid template lists valid ones', async () => {
   const { code, out } = await run(['create', 'x', 'ngawur']);
   assert.equal(code, 1);
-  assert.match(out, /template "ngawur" tidak ada/);
+  assert.match(out, /Template "ngawur" does not exist/);
   assert.match(out, /default/);
   assert.match(out, /minimal/);
   assert.match(out, /backend-only/);
@@ -122,7 +122,7 @@ test('axero build creates dist with manifest', async () => {
   writeFileSync(join(app, 'client', 'index.html'), '<h1>x</h1>');
   const { code, out } = await run(['build'], { cwd: app });
   assert.equal(code, 0);
-  assert.match(out, /built/);
+  assert.match(out, /Build completed successfully!/);
   const manifest = JSON.parse(readFileSync(join(app, 'dist', 'manifest.json'), 'utf8'));
   assert.ok(manifest.built);
   assert.ok(existsSync(join(app, 'dist', 'server.mjs')));
