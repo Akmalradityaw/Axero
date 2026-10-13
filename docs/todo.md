@@ -270,6 +270,17 @@ Konteks: user redesign total tampilan `packages/cli/bin/axero.mjs` (73 → 194 b
 
 ---
 
+### Sprint 28: CI Fix — Node 20 Glob + fail-fast — DONE 2026-10-13
+
+Konteks: badge `× 0/2` / `1/2` di history commit GitHub (CI matrix gagal).
+
+- [x] Root cause: `node --test "tests/*.test.mjs"` — glob di `--test` butuh Node v21+, job 20.x gagal deterministik. Terkonfirmasi dari docs Node.js.
+- [x] Fix: `"test": "node --test"` — default discovery (`**/*.test.mjs`, support Node 18+). 1 baris.
+- [x] `ci.yml`: `fail-fast: false` — versi lapor independen, 20.x gagal tidak cancel 22.x.
+- [x] Verifikasi lokal: 37/37 OK via discovery (tidak ada file non-test yang ke-match).
+
+---
+
 ### Sprint 25: Fix Hint Port Pre-flight (non-node occupant) — DONE 2026-10-12
 
 Konteks: user dapat `FAIL: port 3000 dipakai proses lain` — ternyata occupant-nya Grafana, bukan node. Hint lama `taskkill /f /im node.exe` misleading.
