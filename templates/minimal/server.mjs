@@ -5,4 +5,5 @@ import { createServer } from '@axero/core';
 const app = createServer();
 app.get('/', (_, res) => res.json({ ok: true, msg: 'axero minimal' }));
 await app.listen(process.env.PORT ?? 3000);
-console.log('axero app on http://localhost:' + (process.env.PORT ?? 3000));
+// skip saat jalan di bawah `axero dev` (CLI sudah tampilkan box UI sendiri).
+if (!process.env.AXERO_DEV) console.log('axero app on http://localhost:' + (process.env.PORT ?? 3000));

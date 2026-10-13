@@ -270,6 +270,16 @@ Konteks: user redesign total tampilan `packages/cli/bin/axero.mjs` (73 → 194 b
 
 ---
 
+### Sprint 29: Dev Box Dinamis + Template Log Gate — DONE 2026-10-13
+
+Konteks: teks ekstra di luar box (dari `console.log` template) + box tidak rata saat panjang teks berubah.
+
+- [x] Box CLI dinamis: `padEnd` + `boxWidth = 42`, padding ANSI-aware — selalu rata berapa pun panjang versi/port.
+- [x] Template log di-gate `AXERO_DEV` (bukan dihapus): CLI dev set env → template skip log; `node server.mjs` / `node dist/server.mjs` langsung tetap bersuara.
+- [x] Verifikasi live: box rata, tanpa log ganda, URL port dinamis benar. 37/37 OK.
+
+---
+
 ### Sprint 28: CI Fix — Node 20 Glob + fail-fast — DONE 2026-10-13
 
 Konteks: badge `× 0/2` / `1/2` di history commit GitHub (CI matrix gagal).
