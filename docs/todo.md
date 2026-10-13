@@ -257,6 +257,19 @@ Konteks: loop `EADDRINUSE` + `Failed running server.mjs` saat `axero dev` diulan
 
 ---
 
+### Sprint 27: CLI Redesign — Log Engine + Box UI (oleh user) — DONE 2026-10-12
+
+Konteks: user redesign total tampilan `packages/cli/bin/axero.mjs` (73 → 194 baris).
+
+- [x] `log` engine: info/success/error/warn/step/br + 6 warna ANSI (bold/dim/red/green/yellow/cyan), auto-off saat di-pipe.
+- [x] `axero dev`: status `Starting.../Ready` + box UI (border `┌│└`, URL hijau).
+- [x] `create`/`build`: step-by-step output + next steps + file count.
+- [x] Semua pesan English (`Port X is currently in use`, `Project created successfully!`, dst).
+- [x] Test diselaraskan: 8 regex di-update ke teks baru. 37/37 OK.
+- [ ] Karakter box `┌│└ √×` bisa tofu di terminal Windows codepage lama — add fallback ASCII jika ada laporan.
+
+---
+
 ### Sprint 25: Fix Hint Port Pre-flight (non-node occupant) — DONE 2026-10-12
 
 Konteks: user dapat `FAIL: port 3000 dipakai proses lain` — ternyata occupant-nya Grafana, bukan node. Hint lama `taskkill /f /im node.exe` misleading.
