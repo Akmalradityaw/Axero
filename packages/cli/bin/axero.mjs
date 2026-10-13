@@ -96,17 +96,21 @@ else if (cmd === 'dev') {
 
   console.log(green('Ready'));
 
-  // Terminal Box UI
-  const pad = (str, len) => str + ' '.repeat(Math.max(0, len - str.replace(/\x1b\[[0-9;]*m/g, '').length));
-  console.log(`\n  ${cyan('┌──────────────────────────────────────────┐')}`);
-  console.log(`  ${cyan('│')}                                          ${cyan('│')}`);
-  console.log(`  ${cyan('│')}  ${bold('Axero Dev Server')} v${pad(VERSION, 20)}${cyan('│')}`);
-  console.log(`  ${cyan('│')}                                          ${cyan('│')}`);
-  console.log(`  ${cyan('│')}  ${dim('Local:')}   ${pad(green(`http://localhost:${port}`), 31)}${cyan('│')}`);
-  console.log(`  ${cyan('│')}                                          ${cyan('│')}`);
-  console.log(`  ${cyan('└──────────────────────────────────────────┘')}\n`);
+  // Terminal Box UI — dynamic width, ANSI-aware padding.
+  const boxWidth = 42;
+  const padEnd = (str) => {
+    const visibleLength = str.replace(/\x1b\[[0-9;]*m/g, '').length;
+    return str + ' '.repeat(Math.max(0, boxWidth - visibleLength));
+  };
+  console.log(`\n  ${cyan('┌' + '─'.repeat(boxWidth) + '┐')}`);
+  console.log(`  ${cyan('│')}${padEnd('')}${cyan('│')}`);
+  console.log(`  ${cyan('│')}${padEnd(`  ${bold('Axero Dev Server')} v${VERSION}`)}${cyan('│')}`);
+  console.log(`  ${cyan('│')}${padEnd('')}${cyan('│')}`);
+  console.log(`  ${cyan('│')}${padEnd(`  ${dim('Local:')}   ${green(`http://localhost:${port}`)}`)}${cyan('│')}`);
+  console.log(`  ${cyan('│')}${padEnd('')}${cyan('│')}`);
+  console.log(`  ${cyan('└' + '─'.repeat(boxWidth) + '┘')}\n`);
 
-  const child = spawn('node', ['--watch', 'server.mjs'], { cwd: process.cwd(), stdio: 'inherit' });
+  const child = spawn('node', ['--watch', 'server.mjs'], { cwd: process.cwd(), stdio: 'inherit', env: { ...process.env, AXERO_DEV: '1' } });
 
   const kill = () => {
     try { child.kill(); } catch { }
