@@ -13,4 +13,5 @@ ws.on('connection', (c) => c.send('connected'));
 watchFiles('./routes', () => ws.broadcast('hmr:reload'));
 
 await app.listen(process.env.PORT ?? 3000);
-console.log('axero app on http://localhost:' + (process.env.PORT ?? 3000));
+// skip saat jalan di bawah `axero dev` (CLI sudah tampilkan box UI sendiri).
+if (!process.env.AXERO_DEV) console.log('axero app on http://localhost:' + (process.env.PORT ?? 3000));
